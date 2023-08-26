@@ -1,0 +1,19 @@
+services:
+  serve:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: serveimage
+    entrypoint:
+      ["uvicorn", "src.main.python.app:app", "--host", "0.0.0.0", "--port", "8080"]
+    ports:
+       - "8080:8080"
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: testimage
+    depends_on:
+      - serve
+    entrypoint:
+      ["python", "src/unittest/python/test.py"]
