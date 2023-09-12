@@ -1,5 +1,5 @@
 #Getting python 3.11
-FROM python:3.11
+FROM python:3.11-slim
 
 #Updating packages and installing curl
 RUN apt-get update && \
